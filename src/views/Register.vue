@@ -71,31 +71,36 @@ export default{
   },
   methods: {
     reg(){
-        let reg_data = []
-      axios.get('http://37.77.104.246/api/jsonstorage/?id=16ee4b9231531f6fae10c5eeabcbb8b9')
+        var reg_data = []
+      axios.get('http://37.77.104.246/api/jsonstorage/?id=ab4968e2190d51c3c6ebab50b0631d9e')
         .then(res=>
             {
-              reg_data = res.data;
+
+                
+                reg_data = res.data;
+                console.log(reg_data)
+                reg_data.push({
+                    "login": this.login,
+                    "password": this.password,
+                    "name": this.name,
+                    "website": this.website,
+                    "company": this.company,
+                    "city": this.city,
+                    "photo": this.photo,
+                    "email": this.email
+
+                });
+              axios.put('http://37.77.104.246/api/jsonstorage/?id=ab4968e2190d51c3c6ebab50b0631d9e',
+                {
+                    reg_data,
+                })
+                .then(res=>{
+                    console.log(res)
+                })
             }
         );
-        reg_data.push({
-            login: this.login,
-            password: this.password,
-            name: this.name,
-            website: this.website,
-            company: this.company,
-            city: this.city,
-            photo: this.photo,
-            email: this.email,
-
-        });
-        axios.put('http://37.77.104.246/api/jsonstorage/?id=16ee4b9231531f6fae10c5eeabcbb8b9',
-        {
-            reg_data,
-        })
-        .then(res=>{
-            console.log(res)
-        })
+        
+        
     }
   }
 }

@@ -32,13 +32,14 @@ export default{
   },
   methods: {
     auth(){
-      axios.get('http://37.77.104.246/api/jsonstorage/?id=16ee4b9231531f6fae10c5eeabcbb8b9')
+      axios.get('http://37.77.104.246/api/jsonstorage/?id=ab4968e2190d51c3c6ebab50b0631d9e')
         .then(res=>
             {
+              console.log(res.data)
               let found = false;
                 for(let i = 0; i<res.data.length; i++){
-                  console.log(res.data)
-                    if (res.data[i].login == this.login && this.password == res.data[i].password) {                      
+                  console.log("===========")
+                    if (this.login == res.data[i].login && this.password == res.data[i].password) {                      
                         this.$router.push('/users/'+res.data[i].login);
                         this.$emit('auth', res.data[i])
                         found = true;
